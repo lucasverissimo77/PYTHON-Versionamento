@@ -1,0 +1,95 @@
+algoritmo "Login de site"
+//versão 1.0.0.3
+
+
+
+
+var
+  usuario: caractere
+  usuario_salvo: caractere
+  senha: caractere
+  senha_salva: caractere
+  administrador: caractere
+  tentativas: inteiro
+  resposta: caractere
+
+
+
+
+
+
+  //login para saber se voce faz parte do site ou nao
+inicio
+
+  escreval ("Seja bem-vindo, Você já faz parte de nosso site ?: ")
+  leia(resposta)
+
+  //caso não tenha conta você se cadastra!!
+
+  enquanto (resposta <> "sim") e (resposta <> "nao") faca
+    escreval("Resposta inválidada! Tente novamente!")
+    leia(resposta)
+  fimenquanto
+
+
+  se resposta = "nao" entao
+    escreval("Digite seu nome: ")
+    leia(usuario)
+    enquanto usuario = "lucas" ou usuario = "adm_joao batista" faca
+      escreval ("Usúario já existente, escolha outro nome de usúario!")
+      leia(usuario)
+    fimenquanto
+    escreval("Digite sua senha: ")
+    leia(senha)
+    escreval("Confirme sua senha")
+    Leia(senha_salva)
+    se senha = senha_salva entao
+      escreval("Olá, ", usuario, " " "Você se cadastrou com sucesso!","!")
+    senao
+      se senha <> senha_salva entao
+        escreval ("Senhas diferentes!!")
+      fimse
+    fimse
+  fimse
+
+    //caso voce ja tenha uma conta entao voce ira entrar em algum usuario!! que seja escolhido por mim
+
+    se resposta = "sim" entao
+      escreval("Digite seu nome: ")
+      leia(usuario_salvo)
+      se (usuario_salvo <> "lucas") e (usuario_salvo <>"adm_joao batista") entao
+        escreval("Usúario não existe!")
+      senao
+        se usuario_salvo = "lucas" entao
+          senha_salva <- "lucas777"
+        fimse
+        se usuario_salvo = "adm_joao batista" entao
+          senha_salva <- "777adm"
+      fimse
+
+
+      escreval("Digite sua senha: ")
+      leia(senha)
+
+      //contador de tentativas
+      tentativas <- 3
+      enquanto (senha <> senha_salva) e (tentativas > 1) faca
+        tentativas <- tentativas - 1
+        escreval("senha incorreta você tem mais ", tentativas, " de chance(s).")
+        escreval("Confirme sua senha novamente: ")
+        leia(senha)
+      fimenquanto
+      se senha <> senha_salva entao
+        escreval ("Acesso bloqueado! Número de tentativas excedido!!!.")
+      senao
+        escreval ("Acesso concedido, ", usuario_salvo, "!!")
+      fimse
+    fimse
+  fimse
+
+
+fimalgoritmo
+
+
+
+//Feito por Lucas del Valle
