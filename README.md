@@ -1,8 +1,2 @@
-# Códigos, linguagens e programas...
-cods kali linux
-cods visualg
-cods python
-cods gml
-cods terminal
-scripts
-plugins
+# Códigos Em Python
+O uso desses Códigos são usados somente para ensino e aprendizado, para quem está aprendendo programação e para quem já entende e quer aperfeiçoar o seu conhecimento
