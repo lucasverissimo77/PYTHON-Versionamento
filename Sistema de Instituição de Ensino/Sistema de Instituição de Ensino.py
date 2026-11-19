@@ -1,6 +1,6 @@
 #Sistema de Instituição de Ensino em Python
-#Feito por Lucas Verissimo Fundador do KODEFORGE | https://www.kodeforge.com.br
-#Versão 2.0
+#Feito por Lucas Verissimo, Caio Azevedo e Yuri Quites | Lucas Verissimo Fundador do KODEFORGE | https://www.kodeforge.com.br
+#Versão 3.0
 
 import os
 import time
@@ -11,7 +11,7 @@ limpar_tela()
 
 lista_alunos = ["kelvens", "joao", "lucas", "Marcos", "Matheus", "Mateus"]
 
-def selection_sort():
+def selection_sort_crescente():
     print("=== Sistema de Ordenação Selection Sort ===")
     n = len(lista_alunos)
 
@@ -28,8 +28,40 @@ def selection_sort():
     limpar_tela()
     main()
 
+def selection_sort_decrescente():
+    print("=== Sistema de Ordenação Selection Sort ===")
+    n = len(lista_alunos)
 
-def bubble_sort():
+    for i in range(n):
+        menor = i
+        for j in range(i + 1, n):
+            if lista_alunos[j] > lista_alunos[menor].lower():
+                menor = j
+        lista_alunos[i], lista_alunos[menor] = lista_alunos[menor], lista_alunos[i]
+    print("Lista Ordenada com Sucesso")
+    print(lista_alunos)
+    print("Aperte Enter para voltar ao Menu")
+    input(">  ")
+    limpar_tela()
+    main()
+
+
+def bubble_sort_crescente():
+    print("=== Sistema de Ordenação Bubble Sort ===")
+    n = len(lista_alunos)
+
+    for i in range(n):
+        for j in range(0, n - i - 1):
+            if lista_alunos[j] > lista_alunos[j + 1].lower():
+                lista_alunos[j], lista_alunos[j + 1] = lista_alunos[j+1], lista_alunos[j]
+    print("Lista Ordenada Com sucesso")
+    print(lista_alunos)
+    print("Aperte Enter para voltar ao Menu")
+    input(">  ")
+    limpar_tela()
+    main()
+
+def bubble_sort_decrescente():
     print("=== Sistema de Ordenação Bubble Sort ===")
     n = len(lista_alunos)
 
@@ -50,16 +82,47 @@ def ordernar_lista():
     print("Opção 1: Bubble sort")
     print("Opção 2: Selection sort")
     print("Opção 3: Sair")
-    resposta = int(input(">  ").strip())
+    try:
+        resposta = int(input(">  ").strip())
+    except ValueError: 
+        print("O valor digitado é invalido tentando novamente...")
+        time.sleep(2.5)
+        limpar_tela()
+        ordernar_lista()
     if resposta == 1:
-        print("Carregando Opção 1...")
-        time.sleep(1.5)
-        limpar_tela()
-        bubble_sort()
+        print("Você Deseja ordernar em que ordem?")
+        print("Opção 1: Crescente \nOpção 2: Decrescente")
+        try:
+            resposta_opcao = int(input(">  ")).strip()
+        except ValueError:
+            print("Valor Informado não é permitido, voltando para o inicio...")
+            time.sleep(2.5)
+            ordernar_lista()
+        if resposta_opcao == 1:
+            time.sleep(1.5)
+            limpar_tela()
+            bubble_sort_crescente()
+        elif resposta_opcao == 2:
+            time.sleep(1.5)
+            limpar_tela()
+            bubble_sort_decrescente()
     elif resposta == 2:
-        print("Carregando Opção 2...")
-        time.sleep(1.5)
-        limpar_tela()
+        print("Você Deseja ordernar em que ordem?")
+        print("Opção 1: Crescente \nOpção 2: Decrescente")
+        try:
+            resposta_opcao = int(input(">  ").strip())
+        except ValueError:
+            print("Valor Informado não é permitido, voltando para o inicio...")
+            time.sleep(2.5)
+            ordernar_lista()
+        if resposta_opcao == 1:
+            time.sleep(1.5)
+            limpar_tela()
+            selection_sort_crescente()
+        elif resposta_opcao == 2:
+            time.sleep(1.5)
+            limpar_tela()
+            selection_sort_decrescente()
 
 
 def busca_sequencial(aluno_procurado):
@@ -134,10 +197,12 @@ def busca_direta(aluno):
         if resposta == 1:
             print("Tentando Novamente...")
             time.sleep(1.5)
+            limpar_tela()
             procurar_aluno()
         elif resposta == 2:
             print("Indo ao Menu Principal")
             time.sleep(1.5)
+            limpar_tela()
             main()
 
 def procurar_aluno():
@@ -215,8 +280,8 @@ def cadastrar_aluno():
             print("Aluno Cadastrado Com Sucesso")
             lista_alunos.append(aluno)
     print("Aperte Enter para ir no menu")
-    limpar_tela()
     input(">  ")
+    limpar_tela()
     main()
 
 
